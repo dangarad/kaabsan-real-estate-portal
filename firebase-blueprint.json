@@ -1,0 +1,85 @@
+{
+  "entities": {
+    "leads": {
+      "title": "Lead / Customer Inquiry",
+      "description": "Customer requests for property tours, valuations, direct purchases, mortgage plans, and contact inquiries",
+      "type": "object",
+      "properties": {
+        "fullName": { "type": "string", "description": "Customer full name" },
+        "phone": { "type": "string", "description": "Customer phone or WhatsApp number" },
+        "email": { "type": "string", "description": "Customer email" },
+        "country": { "type": "string", "description": "Diaspora country or local city" },
+        "propertyTitle": { "type": "string", "description": "Target property or project" },
+        "project": { "type": "string", "description": "Target project slug" },
+        "type": { "type": "string", "enum": ["tour", "contact", "valuation", "purchase", "mortgage", "callback"], "description": "Inquiry type" },
+        "message": { "type": "string", "description": "Customer notes or message" },
+        "status": { "type": "string", "enum": ["new", "contacted", "scheduled", "completed", "cancelled"], "description": "Lead processing status" },
+        "preferredDate": { "type": "string", "description": "Requested tour date" },
+        "preferredTime": { "type": "string", "description": "Requested tour time" },
+        "financingPlan": { "type": "string", "description": "Selected financing plan" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["fullName", "phone", "type", "createdAt"]
+    },
+    "gallery_items": {
+      "title": "Gallery Media Item",
+      "description": "Uploaded HD photos, floorplans, or construction updates",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string", "description": "Photo or video title" },
+        "project": { "type": "string", "description": "Project ID" },
+        "projectName": { "type": "string", "description": "Display name of project" },
+        "category": { "type": "string", "enum": ["photo", "video", "floorplan", "construction"], "description": "Media category" },
+        "image": { "type": "string", "description": "URL or base64 data" },
+        "tag": { "type": "string", "description": "Badge tag" },
+        "description": { "type": "string", "description": "Detailed caption" },
+        "sqm": { "type": "string", "description": "Area info" },
+        "price": { "type": "string", "description": "Price info" },
+        "createdAt": { "type": "string", "description": "ISO timestamp" }
+      },
+      "required": ["title", "project", "category", "image"]
+    },
+    "site_settings": {
+      "title": "Global Site Settings",
+      "description": "Office phone numbers, WhatsApp, exchange rates, and email recipients",
+      "type": "object",
+      "properties": {
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "usdToSlshRate": { "type": "number" },
+        "updatedAt": { "type": "string" }
+      }
+    }
+  },
+  "firestore": {
+    "leads": {
+      "description": "Public can create leads/inquiries; Admins can read, update, delete",
+      "allow": {
+        "read": "true",
+        "create": "true",
+        "update": "true",
+        "delete": "true"
+      }
+    },
+    "gallery_items": {
+      "description": "Public can view gallery; Admins can create, update, delete",
+      "allow": {
+        "read": "true",
+        "create": "true",
+        "update": "true",
+        "delete": "true"
+      }
+    },
+    "site_settings": {
+      "description": "Site global configurations",
+      "allow": {
+        "read": "true",
+        "create": "true",
+        "update": "true",
+        "delete": "true"
+      }
+    }
+  }
+}
