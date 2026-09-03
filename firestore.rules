@@ -7,7 +7,19 @@ service cloud.firestore {
     match /gallery_items/{itemId} {
       allow read, write: if true;
     }
+    match /gallery_media/{itemId} {
+      allow read, write: if true;
+    }
     match /properties/{propId} {
+      allow read, write: if true;
+    }
+    match /master_communities/{commId} {
+      allow read, write: if true;
+    }
+    match /rental_units/{unitId} {
+      allow read, write: if true;
+    }
+    match /rental_leads/{leadId} {
       allow read, write: if true;
     }
     match /site_settings/{settingId} {

@@ -42,6 +42,11 @@ function getGenAI(): GoogleGenAI | null {
 }
 
 // Health check endpoint
+app.get("/download-code", (req, res) => {
+  const file = path.join(process.cwd(), "public", "kaabsan-code.tar.gz");
+  res.download(file, "kaabsan-real-estate-source.tar.gz");
+});
+
 app.get("/api/health", (req, res) => {
   res.json({
     status: "ok",
